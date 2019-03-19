@@ -1,0 +1,30 @@
+{
+  "name": "node.js",
+  "version": "1.0.0",
+  "description": "Dev Challenge 2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint ./lib",
+    "start": "node lib/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "eslint": "^5.15.2",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.4.1",
+    "jest": "^24.5.0",
+    "sinon": "^7.2.7",
+    "redis-mock": "0.43.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.2",
+    "mongoose": "^5.4.19",
+    "redis": "^2.8.0"
+  }
+}

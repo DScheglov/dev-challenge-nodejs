@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`paeseGatesText should parse example text 1`] = `
+Array [
+  Array [
+    1,
+    7,
+    13,
+    17,
+    20,
+    34,
+    56,
+    78,
+  ],
+  Array [
+    2,
+    5,
+    9,
+    12,
+    13,
+    15,
+    16,
+    25,
+    33,
+    47,
+  ],
+  Array [
+    1,
+    7,
+    16,
+    19,
+    21,
+    34,
+    56,
+    78,
+  ],
+  Array [
+    2,
+    3,
+    7,
+    11,
+    16,
+    17,
+    20,
+    25,
+    33,
+    47,
+  ],
+  Array [
+    5,
+    9,
+    17,
+    19,
+    20,
+    25,
+    33,
+    47,
+  ],
+]
+`;
