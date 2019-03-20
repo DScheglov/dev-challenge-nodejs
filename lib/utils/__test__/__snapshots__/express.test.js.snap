@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parse params: should allow to get error 1`] = `"Route parameter \\"param\\" is not specified or specified incorrectly: Some error"`;
+
+exports[`parse query: should allow to get error 1`] = `"Query parameter \\"param\\" is not specified or specified incorrectly: Some error"`;

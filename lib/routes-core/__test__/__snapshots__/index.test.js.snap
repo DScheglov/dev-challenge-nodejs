@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getRoute should return an valid path for 56 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
+
+exports[`getRoute should return an valid path for 56 from cache if called twice 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
+
+exports[`getRoute should return an valid path for 56 from cache if called twice 2`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
