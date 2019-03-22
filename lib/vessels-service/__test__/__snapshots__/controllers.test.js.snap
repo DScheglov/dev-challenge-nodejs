@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`controllers.getAllVessels should call res.json with DB result 1`] = `
+Array [
+  Object {
+    "target": 1,
+    "vessel": 1,
+  },
+  Object {
+    "target": 2,
+    "vessel": 2,
+  },
+]
+`;
+
+exports[`controllers.getVesselRequests should call res.json with DB result 1`] = `
+Array [
+  Object {
+    "requestDate": 2019-03-22T10:12:12.000Z,
+    "result": Array [],
+    "target": 2,
+    "vessel": 1,
+  },
+  Object {
+    "requestDate": 2019-03-22T10:12:15.000Z,
+    "result": Array [],
+    "target": 2,
+    "vessel": 1,
+  },
+]
+`;
