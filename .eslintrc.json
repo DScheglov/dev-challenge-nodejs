@@ -13,6 +13,7 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "indent": ["error", 2, { "flatTernaryExpressions": true }],
         "comma-dangle": ["error", {
             "arrays": "only-multiline",
             "objects": "only-multiline",
@@ -28,7 +29,9 @@
         }],
         "no-bitwise": "off",
         "arrow-parens": ["error", "as-needed"],
-        "no-console": "off"
+        "no-console": "off",
+        "no-nested-ternary": "off",
+        "operator-linebreak": "off"
     },
     "plugins": ["jest"]
 }

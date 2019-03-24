@@ -1,7 +1,7 @@
 {
-  "name": "node.js",
+  "name": "nodejs",
   "version": "1.0.0",
-  "description": "Dev Challenge 2019",
+  "description": "Dev Challenge 2019 - Backend",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toCsv should process a complex data 1`] = `
+"\\"Value With \\"\\"Quotes\\"\\"\\",\\"Value With ,(comma)\\",1,2,3
+Just a Value,\\"Value with 
+ carret return\\",1,2,3"
+`;
+
+exports[`toCsv should return a multiple rows 1`] = `
+"1,2,3
+3,2,1"
+`;
+
+exports[`toCsv should return a multiple rows and header row 1`] = `
+"Field #1,Field #2,Field #3
+1,2,3
+3,2,1"
+`;
+
+exports[`toCsv should return a single row 1`] = `"1,2,3"`;
+
+exports[`toCsv should support headers 1`] = `
+"Field 1,Field 2,Field 3
+1,2,3"
+`;
