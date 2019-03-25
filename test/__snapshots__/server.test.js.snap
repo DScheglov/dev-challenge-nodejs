@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/routes GET /routes - 400, vessel is required 1`] = `
+Object {
+  "error": "Query parameter \\"vessel\\" is not specified or specified incorrectly: \\"undefined\\" is not a positive integer.",
+}
+`;
+
+exports[`/routes GET /routes?&target=56 - 400, vessel is required 1`] = `
+Object {
+  "error": "Query parameter \\"vessel\\" is not specified or specified incorrectly: \\"undefined\\" is not a positive integer.",
+}
+`;
+
+exports[`/routes GET /routes?&vessel=1 - 400, target is required 1`] = `
+Object {
+  "error": "Query parameter \\"target\\" is not specified or specified incorrectly: \\"undefined\\" is not a positive integer.",
+}
+`;
+
+exports[`/routes GET /routes?target=56&vessel=1 - 200, [...routes] 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
+
+exports[`/vessels GET /vessels?format=csv - 200, csv: header and vessels 1`] = `
+"Vessel,Last Target
+1,4
+2,56"
+`;
+
+exports[`/vessels GET /vessels?format=csv - 200, csv: headers only 1`] = `"Vessel,Last Target"`;
+
+exports[`/vessels/:vessel/route-requests GET /vessels/1/route-requests - 200, json: [ ...requests ] 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
+
+exports[`/vessels/:vessel/route-requests GET /vessels/1/route-requests?format=json - 200, json: [ ...requests ] 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;
+
+exports[`/vessels/:vessel/route-requests GET /vessels/1/route-requests?format=pdf - 200, json: [ ...requests ] 1`] = `
+Array [
+  Object {
+    "gates": Array [
+      22,
+      34,
+    ],
+    "securityLevel": 1,
+  },
+  Object {
+    "gates": Array [
+      2,
+      5,
+      9,
+      12,
+      13,
+      15,
+    ],
+    "securityLevel": 2,
+  },
+  Object {
+    "gates": Array [
+      16,
+      19,
+      21,
+    ],
+    "securityLevel": 3,
+  },
+  Object {
+    "gates": Array [
+      2,
+      3,
+      7,
+      11,
+      16,
+      17,
+    ],
+    "securityLevel": 4,
+  },
+  Object {
+    "gates": Array [
+      17,
+      19,
+      20,
+    ],
+    "securityLevel": 5,
+  },
+]
+`;

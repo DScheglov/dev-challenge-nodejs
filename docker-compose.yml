@@ -1,0 +1,31 @@
+version: '3'
+services:
+    redisdb:
+        image: redis:latest
+        ports:
+            - 6379
+    mongodb:
+        image: mongo:latest
+        environment:
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/dev/null
+        volumes:
+            - ./data/db:/data/db
+        ports:
+            - 27017
+        command: mongod --smallfiles --logpath=/dev/null # --quiet
+    spacecom-api:
+        build: .
+        environment:
+            - REDIS_DB_URL=redis://redisdb
+            - MONGO_DB_URI=mongodb://mongodb/spacecom
+            - SOURCE_FILE_PATH=./gates.txt
+        command: "npm start"
+        ports:
+            - 3000:3000
+        links:
+            - mongodb
+            - redisdb
+        depends_on:
+            - mongodb
+            - redisdb

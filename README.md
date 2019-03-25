@@ -3,6 +3,7 @@
 ### 1. Локально.
 
 Мають бути встановлені локально:
+ - `mongodb v3.2+`
  - `node v.10+`
  - `npm v.6+`
 
@@ -14,11 +15,8 @@ npm test
 ### 2. В `Docker`-контейнері
 
 ```shell
- docker run \
-    -v $PWD:/app \
-    node:10-slim \
-    /bin/sh -c \
-    "cd /app; npm install && npm test"
+env COMPOSE_FILE=./test/docker-compose.yml \
+docker-compose up --build --abort-on-container-exit --exit-code-from=integration-test
 ```
 
 **Please consider**: `npm install` inside of Docker-container proceeds absolutely silently.
