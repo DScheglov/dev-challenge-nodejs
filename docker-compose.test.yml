@@ -6,12 +6,10 @@ services:
             - 27017
         command: mongod --smallfiles --logpath=/dev/null # --quiet
     integration-test:
-        build: ..
+        build: .
         environment:
             - DOCKER_TEST=true
         command: "npm test"
-        ports:
-            - 8000:8000
         links:
             - mongodb
         depends_on:

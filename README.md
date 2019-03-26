@@ -4,6 +4,11 @@
 
 All commands SHOULD be executed from the project root.
 
+According to your system settings `docker` and `docker-compose` commands COULD require
+a `sudo` mode.
+
+**Please consider**: `npm install` inside of Docker-container proceeds absolutely silently and can take a few minutes (est. less then 20 seconds, but actual time depends on host and network performance).
+
 
 ### 1.1. Deployment:
 
@@ -11,23 +16,119 @@ All commands SHOULD be executed from the project root.
 docker-compose up --build
 ```
 
+Console output on successfull start:
+
+```shell
+spacecom-api_1  |
+spacecom-api_1  | > nodejs@1.0.0 start /usr/src/app
+spacecom-api_1  | > node lib/server.js
+spacecom-api_1  |
+spacecom-api_1  | May the Force be with you on port: 3000
+```
+
+#### Resolving `port is already in use` issue:
+
+You can specify port to be used for SpaceCom API by assigning the `API_PORT` environment variable:
+
+```shell
+env API_PORT=8080 docker-compose up --build
+```
 
 ### 1.2. Testing:
 
-To run unit and integration tests execute following commands:
+To run unit and integration tests execute the following command:
 
 ```shell
-env COMPOSE_FILE=./test/docker-compose.yml \
-docker-compose up --build --abort-on-container-exit --exit-code-from=integration-test
+docker-compose -f ./docker-compose.test.yml up --build \
+  --abort-on-container-exit \
+  --exit-code-from=integration-test
 ```
 
-**Please consider**: `npm install` inside of Docker-container proceeds absolutely silently.
+Console output:
+
+```shell
+integration-test_1  | 
+integration-test_1  | > nodejs@1.0.0 test /usr/src/app
+integration-test_1  | > jest --coverage
+integration-test_1  | 
+integration-test_1  | PASS lib/utils/__test__/parsers.test.js
+integration-test_1  | PASS lib/utils/__test__/async-fn.test.js
+integration-test_1  | PASS lib/routes-core/__test__/find-summ.sw.test.js
+integration-test_1  | PASS lib/utils/__test__/express.test.js
+integration-test_1  | PASS lib/vessels-service/__test__/middleware.test.js
+integration-test_1  | PASS lib/vessels-service/__test__/controllers.test.js
+integration-test_1  | PASS lib/utils/__test__/promisify.test.js
+integration-test_1  | PASS lib/utils/__test__/transduce.test.js
+integration-test_1  | PASS lib/utils/__test__/fn.test.js
+integration-test_1  | PASS lib/vessels-service/__test__/mappers.test.js
+integration-test_1  | PASS lib/models/__test__/index.test.js
+integration-test_1  | PASS lib/routes-core/__test__/find-path.test.js
+integration-test_1  | PASS lib/routes-service/__test__/controllers.test.js
+integration-test_1  | PASS lib/utils/__test__/csv.test.js
+integration-test_1  | PASS lib/routes-core/__test__/index.test.js
+integration-test_1  | PASS lib/routes-service/__test__/index.test.js
+integration-test_1  | PASS lib/routes-core/__test__/parser.test.js
+integration-test_1  | PASS lib/vessels-service/__test__/format.test.js
+integration-test_1  | PASS lib/routes-service/__test__/init.test.js
+integration-test_1  | PASS lib/vessels-service/__test__/index.test.js
+integration-test_1  | PASS test/server.test.js
+integration-test_1  | PASS lib/redis-cache/__test__/index.test.js
+integration-test_1  | --------------------------|----------|----------|----------|----------|-------------------|
+integration-test_1  | File                      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+integration-test_1  | --------------------------|----------|----------|----------|----------|-------------------|
+integration-test_1  | All files                 |    96.81 |    95.12 |     95.5 |    97.08 |                   |
+integration-test_1  |  lib                      |    79.17 |    83.33 |        0 |    82.61 |                   |
+integration-test_1  |   config.js               |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   server.js               |    77.27 |       50 |        0 |    80.95 |       39,40,44,52 |
+integration-test_1  |  lib/models               |    96.15 |      100 |    83.33 |      100 |                   |
+integration-test_1  |   index.js                |       90 |      100 |    66.67 |      100 |                   |
+integration-test_1  |   mongoose.js             |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   route-request-record.js |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |  lib/redis-cache          |    86.11 |       50 |    92.86 |    84.62 |                   |
+integration-test_1  |   index.js                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   redis.js                |    68.75 |       25 |       50 |    73.33 |       17,18,19,20 |
+integration-test_1  |  lib/routes-core          |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   find-route.js           |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   find-summ.sw.js         |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   index.js                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   parser.js               |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |  lib/routes-service       |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   controllers.js          |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   index.js                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   init.js                 |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |  lib/utils                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   async-fn.js             |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   csv.js                  |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   express.js              |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   fn.js                   |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   index.js                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   parsers.js              |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   promisify.js            |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   transduce.js            |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |  lib/vessels-service      |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   controllers.js          |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   format.js               |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   index.js                |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   mappers.js              |      100 |      100 |      100 |      100 |                   |
+integration-test_1  |   middlewares.js          |      100 |      100 |      100 |      100 |                   |
+integration-test_1  | --------------------------|----------|----------|----------|----------|-------------------|
+integration-test_1  | 
+integration-test_1  | Test Suites: 22 passed, 22 total
+integration-test_1  | Tests:       161 passed, 161 total
+integration-test_1  | Snapshots:   30 passed, 30 total
+integration-test_1  | Time:        4.285s
+integration-test_1  | Ran all test suites.
+nodejs_integration-test_1 exited with code 0
+Aborting on container exit...
+Stopping nodejs_mongodb_1 ... done
+```
+
+
 
 #### Cleaning out after tests
 
 ```shell
-env COMPOSE_FILE=./test/docker-compose.yml \
-docker-compose down
+docker-compose -f ./docker-compose.test.yml down
 ```
 
 ## 2. API Specification
@@ -158,28 +259,19 @@ In case of accept such meaning of **First** route algorithm should ignore fact t
 
 ```js
   for (; start >= 0; start--) {
-    target -= items[start];
-    if (target === 0) {
-      // saving result instead of break the iterations
-      result = { start, end };
-    } else if (target < 0) {
-      target += items[end--];
-    }
+    rest -= items[start];
+    if (rest < 0) rest += items[end--];
+    if (rest === 0) result = { start, end }; // saving result instead of break the iterations
   }
 ```
 
 In case of searching from the beggining of array we absolutelly can ignore the ordered state of incoming array:
 
 ```js
-  for (start = 0; end = 0; end <= n; end++) {
-    target -= items[end];
-    if (target === 0) {
-      break;
-    }
-
-    while (target < 0) {
-      target += items[start++];
-    }
+  for (start = end = 0; end <= n; end++) {
+    rest -= items[end];
+    while (rest < 0) rest += items[start++];
+    if (rest === 0) break;
   }
 ```
 
