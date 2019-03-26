@@ -1,5 +1,35 @@
 # SpaceCom Service
 
+Service of Rebel Alliance Command center.
+
+## Contents:
+ - [Contents](#contents)
+
+ - [1. Dockerized Deployment and Testing](#1-dockerized-deployment-and-testing)
+   - [1.1. Deployment](#11-deployment)
+     - [Resolving `port is already in use` issue](#resolving-port-is-already-in-use-issue)
+     - [Cleaning out after deployment](#cleaning-out-after-deployment)
+   - [1.2. Testing](#12-testing)
+     - [Cleaning out after tests](#cleaning-out-after-tests)
+
+ - [2. API Specification](#2-api-specification)
+   - [2.1. Get Routes for Vessel (starship) to Target sector](#21-get-routes-for-vessel-starship-to-target-sector)
+   - [2.2. Get Vessels Requested for Routes](#22-get-vessels-requested-for-routes)
+   - [2.3. Get Vessels Requested for Routes in `csv`-format](#23-get-vessels-requested-for-routes-in-csv-format)
+   - [2.4. Save Vessels Requested for Routes in `csv`-format as file](#24-save-vessels-requested-for-routes-in-csv-format-as-file)
+   - [2.5. Get Vessel's Requests for Routes](#25-get-vessels-requests-for-routes)
+   - [2.6. Get Vessel's Requests for Routes in `csv`-format](#26-get-vessels-requests-for-routes-in-csv-format)
+   - [2.7. Save Vessel's Requests for Routes in `csv`-format as file](#27-save-vessels-requests-for-routes-in-csv-format-as-file)
+
+ - [3. Notes](#3-notes)
+   - [3.1. Task Description](#31-task-description)
+   - [3.2. CSV-Format for Route Requests](#32-csv-format-for-route-requests)
+  - [4. Local deployment and testing (optional)](#4-Local-deployment-and-testing-optional)
+    - [4.1. Requirements for local deployment](#41-requirements-for-local-deployment)
+    - [4.2. Deployment](#42-deployment)
+    - [4.3. Testing](#43-testing)
+
+
 ## 1. Dockerized Deployment and Testing
 
 All commands SHOULD be executed from the project root.
@@ -26,12 +56,19 @@ spacecom-api_1  |
 spacecom-api_1  | May the Force be with you on port: 3000
 ```
 
+
 #### Resolving `port is already in use` issue:
 
-You can specify port to be used for SpaceCom API by assigning the `API_PORT` environment variable:
+You can specify any other port to be used for SpaceCom API by assigning the `API_PORT` environment variable:
 
 ```shell
 env API_PORT=8080 docker-compose up --build
+```
+
+#### Cleaning out after deployment:
+
+```shell
+docker-compose down --volumes
 ```
 
 ### 1.2. Testing:
@@ -124,7 +161,6 @@ Stopping nodejs_mongodb_1 ... done
 ```
 
 
-
 #### Cleaning out after tests
 
 ```shell
@@ -210,7 +246,7 @@ Response:
       { "securityLevel": 3, "gates": [ 16, 19, 21 ] },
       { "securityLevel": 4, "gates": [ 2, 3, 7, 11, 16, 17 ] },
       { "securityLevel": 5, "gates": [ 17, 19, 20 ] }
-      ]
+    ]
   },
   {
     "_id": "5c991ca147e7730011737365",
@@ -299,8 +335,8 @@ This structure is most suitable for further analysis with such tools as `MS Exce
 
 For testing and deployment:
  - `mongodb v3.2+`
- - `node v.10+`
- - `npm v.6+`
+ - `node v10+`
+ - `npm v6+`
 
 For deployment only:
  - `redis v5+`

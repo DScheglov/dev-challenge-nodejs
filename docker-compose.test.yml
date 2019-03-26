@@ -9,7 +9,7 @@ services:
         build: .
         environment:
             - DOCKER_TEST=true
-        command: "npm test"
+        command: npm test
         links:
             - mongodb
         depends_on:
