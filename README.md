@@ -169,7 +169,7 @@ docker-compose -f ./docker-compose.test.yml down
 
 ## 2. API Specification
 
-API is described with [bluprint](https://apiblueprint.org/) format and is accessible
+API is described with [blueprint](https://apiblueprint.org/) format and is accessible
 locally by link [SpaceCom API Specification](./blueprint.md).
 
 Additionally there are some `curl`-examples:
