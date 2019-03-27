@@ -1,19 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable global-require */
 jest.mock('redis', () => require('redis-mock'));
-const uuid = require('uuid/v4');
 const request = require('supertest');
 const mongoose = require('mongoose');
 const app = require('../lib/server');
-
-const dbName = `integration-test-${uuid()}`;
 
 const getRoutes = (vessel, target) => request(app).get(`/routes?target=${target}&vessel=${vessel}`);
 
 describe('/routes', () => {
   beforeAll(() => app.init({
-    MONGO_DB_URI: `mongodb://${process.env.DOCKER_TEST ? 'mongodb' : 'localhost'}/${dbName}`,
+    MONGO_DB_URI: global.TEST_MONGO_URI,
     SOURCE_FILE_PATH: `${__dirname}/../gates.txt`
-  }), 120000);
+  }));
 
   beforeEach(() => mongoose
     .connection
@@ -22,44 +20,44 @@ describe('/routes', () => {
       collections => Promise.all(
         collections.map(collection => collection.deleteMany({}))
       )
-    ), 120000);
+    ));
 
   afterAll(async () => {
     await mongoose.connection.db.dropDatabase();
     await mongoose.disconnect();
-  }, 120000);
+  });
 
   it('GET /routes?target=56&vessel=1 - 200, [...routes]', async () => {
     const result = await request(app).get('/routes?target=56&vessel=1').expect(200);
     expect(result.body).toMatchSnapshot();
-  }, 120000);
+  });
 
   it('GET /routes?target=4&vessel=1 - 200, []', async () => {
     const result = await request(app).get('/routes?target=4&vessel=1').expect(200);
     expect(result.body).toEqual([]);
-  }, 120000);
+  });
 
   it('GET /routes?&vessel=1 - 400, target is required', async () => {
     const result = await request(app).get('/routes?vessel=1').expect(400);
     expect(result.body).toMatchSnapshot();
-  }, 120000);
+  });
 
   it('GET /routes?&target=56 - 400, vessel is required', async () => {
     const result = await request(app).get('/routes?target=56').expect(400);
     expect(result.body).toMatchSnapshot();
-  }, 120000);
+  });
 
   it('GET /routes - 400, vessel is required', async () => {
     const result = await request(app).get('/routes').expect(400);
     expect(result.body).toMatchSnapshot();
-  }, 120000);
+  });
 });
 
 describe('/vessels', () => {
   beforeAll(() => app.init({
-    MONGO_DB_URI: `mongodb://${process.env.DOCKER_TEST ? 'mongodb' : 'localhost'}/${dbName}`,
+    MONGO_DB_URI: global.TEST_MONGO_URI,
     SOURCE_FILE_PATH: `${__dirname}/../gates.txt`
-  }), 120000);
+  }));
 
   beforeEach(() => mongoose
     .connection
@@ -68,12 +66,12 @@ describe('/vessels', () => {
       collections => Promise.all(
         collections.map(collection => collection.deleteMany({}))
       )
-    ), 120000);
+    ));
 
   afterAll(async () => {
     await mongoose.connection.db.dropDatabase();
     await mongoose.disconnect();
-  }, 120000);
+  });
 
   it('GET /vessels - 200, json: []', async () => {
     await request(app).get('/vessels').expect(200, []);
@@ -139,9 +137,9 @@ describe('/vessels', () => {
 
 describe('/vessels/:vessel/route-requests', () => {
   beforeAll(() => app.init({
-    MONGO_DB_URI: `mongodb://${process.env.DOCKER_TEST ? 'mongodb' : 'localhost'}/${dbName}`,
+    MONGO_DB_URI: global.TEST_MONGO_URI,
     SOURCE_FILE_PATH: `${__dirname}/../gates.txt`
-  }), 120000);
+  }));
 
   beforeEach(() => mongoose
     .connection
@@ -150,12 +148,12 @@ describe('/vessels/:vessel/route-requests', () => {
       collections => Promise.all(
         collections.map(collection => collection.deleteMany({}))
       )
-    ), 120000);
+    ));
 
   afterAll(async () => {
     await mongoose.connection.db.dropDatabase();
     await mongoose.disconnect();
-  }, 120000);
+  });
 
   it('GET /vessels/5/route-requests - 404, json: { error: "vessel 5 is not found" }', async () => {
     await request(app)

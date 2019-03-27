@@ -21,6 +21,9 @@
     "supertest": "^4.0.2",
     "uuid": "^3.3.2"
   },
+  "optionalDependencies": {
+    "mongodb-memory-server": "^4.2.1"
+  },
   "dependencies": {
     "bluebird": "^3.5.3",
     "express": "^4.16.4",
